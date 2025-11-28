@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web_app/index.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- hero -->
+<section class="hero">
+  <img class="hero-bg" src="{% static 'images/hero_kids.png' %}" alt="Niños jugando" width="200px">
+  <h2 class="hero-tittle">Rainbow Kids</h2>
+    <p class="hero-text">Un espacio colorido y alegre para niñas y niños de 2 a 5 años. Aprender jugando, todos los días.</p>
+  <a class="hero-cta" href="{% url 'inscripcion' %}">Inscripción</a>
+</section>
+
+<!-- actividades -->
+<section class="bg-circles actividades">
+  <div class="section-head">
+    <h2>Actividades</h2>
+    <p>Programas diseñados para inspirar curiosidad y alegría.</p>
+  </div>
+
+  <div class="cards">
+    <!-- Card 1 -->
+    <article class="card card-green">
+      <img class="card-icon" src="{% static 'images/icon_abc.png' %}" alt="ABC" width="200px">
+      <h3>Exploración y Lenguaje</h3>
+      <p>Juegos con letras, canciones y cuentos para estimular el lenguaje.</p>
+      <a class="card-btn" href="{% url 'actividades' %}">Mirar más</a>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card card-blue">
+      <img class="card-icon" src="{% static 'images/icon_playground.png' %}" alt="Patio" width="200px">
+      <h3>Juego en Patio</h3>
+      <p>Plaza blanda, toboganes y circuitos motrices al aire libre.</p>
+      <a class="card-btn" href="{% url 'actividades' %}">Mirar más</a>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="card card-pink">
+      <img class="card-icon" src="{% static 'images/icon_art.png' %}" alt="Arte">
+      <h3>Arte y Creatividad</h3>
+      <p>Pintura, moldeado y manualidades para descubrir su mundo interior.</p>
+      <a class="card-btn" href="{% url 'actividades' %}">Mirar más</a>
+    </article>
+  </div>
+</section>
+
+{% endblock %}

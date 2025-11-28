@@ -1,0 +1,39 @@
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Base de datos local
+db.sqlite3
+
+# Configuración / secretos
+.env
+
+# Archivos de logs
+*.log
+
+# Archivos de sistema / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Archivos generados por collectstatic
+staticfiles/
+
+# Media files (uploads)
+media/
+
+# Configuración local
+local_settings.py
+
+# Bases de datos SQLite (general)
+*.sqlite3
+
+# Dumps de usuarios
+users_dump.txt

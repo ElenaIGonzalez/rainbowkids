@@ -1,0 +1,199 @@
+.activities-page {
+  background-color: var(--bg-light-blue);
+  padding-top: 60px;
+}
+
+/* --- Header --- */
+.activities-header {
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+.main-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 3rem;
+  color: var(--blue);
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 0px rgba(92, 157, 255, 0.2);
+}
+
+.main-desc {
+  color: var(--blue);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-inscription {
+  display: inline-block;
+  background-color: var(--red);
+  color: var(--text-white);
+  padding: 12px 40px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(255, 107, 107, 0.4);
+  transition: transform 0.2s;
+}
+
+.btn-inscription:hover {
+  transform: scale(1.05);
+  color: var(--text-white);
+}
+
+/* --- container --- */
+.curved-container {
+  background-color: var(--bg);
+  border-top-left-radius: 100px;
+  border-top-right-radius: 100px;
+  padding: 80px 20px;
+  min-height: 500px;
+}
+
+.activity-list-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+/* --- actividades --- */
+.activity-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Info */
+.row-info {
+  margin-bottom: 10px;
+}
+
+.row-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.row-desc {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Card */
+.activity-card {
+  background: var(--bg);
+  border-radius: 30px;
+  border: 3px solid transparent;
+  overflow: hidden;
+  max-width: 600px;
+}
+
+.card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 25px;
+}
+
+.card-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
+/* --- verde --- */
+.theme-green .row-title {
+  color: var(--green);
+}
+
+.theme-green .row-desc {
+  color: var(--green);
+}
+
+.theme-green .activity-card {
+  border-color: var(--green);
+}
+
+.theme-green .card-title {
+  color: var(--green);
+}
+
+.theme-green .card-text {
+  color: var(--green);
+}
+
+/* --- rojo --- */
+.theme-pink .row-title {
+  color: var(--red);
+}
+
+.theme-pink .row-desc {
+  color: var(--red);
+}
+
+.theme-pink .activity-card {
+  border-color: var(--red);
+}
+
+.theme-pink .card-title {
+  color: var(--red);
+}
+
+.theme-pink .card-text {
+  color: var(--red);
+}
+
+/* --- azul --- */
+.theme-blue .row-title {
+  color: var(--blue);
+}
+
+.theme-blue .row-desc {
+  color: var(--blue);
+}
+
+.theme-blue .activity-card {
+  border-color: var(--blue);
+}
+
+.theme-blue .card-title {
+  color: var(--blue);
+}
+
+.theme-blue .card-text {
+  color: var(--blue);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .curved-container {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding: 40px 20px;
+  }
+
+  .main-title {
+    font-size: 2.2rem;
+  }
+}

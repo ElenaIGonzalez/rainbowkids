@@ -1,0 +1,111 @@
+/* Estilos para páginas de autenticación (Login, Registro, Validar) */
+
+.auth-container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 40px;
+    background: var(--bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.auth-container h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2.5rem;
+    color: var(--blue);
+    margin-bottom: 30px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-gray-light);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--bg-light-blue);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    background: var(--bg);
+    border-color: var(--blue);
+}
+
+.btn-auth {
+    background: var(--cta-bg, #ffd54d);
+    color: var(--cta-text);
+    padding: 15px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 213, 77, 0.4);
+}
+
+.auth-links {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: var(--text-gray);
+}
+
+.auth-links a {
+    color: var(--blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+/* Mensajes de alerta */
+.alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.alert-error {
+    background: var(--bg-error);
+    color: var(--red);
+    border: 1px solid var(--border-error);
+}
+
+.alert-success {
+    background: var(--bg-success);
+    color: var(--green);
+    border: 1px solid var(--border-success);
+}

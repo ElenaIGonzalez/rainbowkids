@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web_app/nosotros.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="about-wrap">
+
+  <!-- contenido -->
+  <div class="about">
+
+    <!-- Misión -->
+    <div class="mission-section">
+      <h2>Nuestra Misión</h2>
+      <p>
+        En Rainbow Kids, nuestra misión es crear un ambiente seguro, divertido y
+        estimulante donde cada niño pueda florecer, aprender y descubrir el mundo a
+        través del juego y la creatividad.
+      </p>
+    </div>
+
+    <!-- Valores -->
+    <div class="values-section">
+      <div class="section-header">
+        <h2>Nuestros Valores</h2>
+        <p>Principios que guían nuestro día a día.</p>
+      </div>
+
+      <div class="values-grid">
+        <!-- Card 1 -->
+        <div class="value-card">
+          <div class="icon-circle icon-green">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3>Crecimiento</h3>
+          <p>Fomentamos el desarrollo integral de cada niño, respetando su ritmo y potencial.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="value-card">
+          <div class="icon-circle icon-blue">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <h3>Creatividad</h3>
+          <p>Estimulamos la imaginación y la expresión artística como herramientas de aprendizaje.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="value-card">
+          <div class="icon-circle icon-red">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h3>Cariño</h3>
+          <p>Brindamos un entorno afectuoso y de confianza para que se sientan como en casa.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="value-card">
+          <div class="icon-circle icon-yellow">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <h3>Comunidad</h3>
+          <p>Promovemos la colaboración, el respeto y la amistad entre niños y familias.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Galeria -->
+    <div class="about-gallery">
+      <img src="{% static 'images/nos1.png' %}" alt="Niños jugando en Rainbow Kids">
+      <img src="{% static 'images/nos2.png' %}" alt="Actividades creativas en Rainbow Kids">
+    </div>
+
+  </div>
+
+</section>
+{% endblock %}

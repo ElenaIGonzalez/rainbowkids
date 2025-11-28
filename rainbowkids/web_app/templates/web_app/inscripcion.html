@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web_app/inscripcion.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="form-inscripcion">
+  <h2>Formulario de Inscripción</h2>
+  <p>Completá los datos para inscribir a tu hijo/a en Rainbow Kids 🌈</p>
+
+  <form id="inscripcionForm" method="post" novalidate>
+    {% csrf_token %}
+
+    <!-- Sección Tutor -->
+    <div class="form-section">
+      <div class="section-header">
+        <i class="fa-regular fa-user icon-tutor"></i>
+        <h3>Información del Padre/Tutor</h3>
+      </div>
+
+      <div class="form-grid">
+        <!-- Nombre Tutor -->
+        <div class="form-field">
+          <label for="{{ form.tutor_nombre.id_for_label }}">Nombre</label>
+          <input type="text" name="{{ form.tutor_nombre.name }}" id="{{ form.tutor_nombre.id_for_label }}"
+            value="{{ form.tutor_nombre.value|default:'' }}" placeholder="Ej: Ana"
+            class="{% if form.tutor_nombre.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_tutor_nombre"></div>
+        </div>
+
+        <!-- Apellido Tutor -->
+        <div class="form-field">
+          <label for="{{ form.tutor_apellido.id_for_label }}">Apellido</label>
+          <input type="text" name="{{ form.tutor_apellido.name }}" id="{{ form.tutor_apellido.id_for_label }}"
+            value="{{ form.tutor_apellido.value|default:'' }}" placeholder="Ej: Pérez"
+            class="{% if form.tutor_apellido.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_tutor_apellido"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-field">
+          <label for="{{ form.tutor_email.id_for_label }}">Correo Electrónico</label>
+          <input type="email" name="{{ form.tutor_email.name }}" id="{{ form.tutor_email.id_for_label }}"
+            value="{{ form.tutor_email.value|default:'' }}" placeholder="ana.perez@email.com"
+            class="{% if form.tutor_email.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_tutor_email"></div>
+        </div>
+
+        <!-- Teléfono -->
+        <div class="form-field">
+          <label for="{{ form.tutor_telefono.id_for_label }}">Teléfono de Contacto</label>
+          <input type="text" name="{{ form.tutor_telefono.name }}" id="{{ form.tutor_telefono.id_for_label }}"
+            value="{{ form.tutor_telefono.value|default:'' }}" placeholder="Ej: +34 600 123 456"
+            class="{% if form.tutor_telefono.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_tutor_telefono"></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Sección Niño -->
+    <div class="form-section">
+      <div class="section-header">
+        <i class="fa-regular fa-face-smile icon-child"></i>
+        <h3>Información del Niño/a</h3>
+      </div>
+
+      <div class="form-grid">
+        <!-- Nombre Niño -->
+        <div class="form-field">
+          <label for="{{ form.ninio_nombre.id_for_label }}">Nombre</label>
+          <input type="text" name="{{ form.ninio_nombre.name }}" id="{{ form.ninio_nombre.id_for_label }}"
+            value="{{ form.ninio_nombre.value|default:'' }}" placeholder="Ej: Leo"
+            class="{% if form.ninio_nombre.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_ninio_nombre"></div>
+        </div>
+
+        <!-- Apellido Niño -->
+        <div class="form-field">
+          <label for="{{ form.ninio_apellido.id_for_label }}">Apellido</label>
+          <input type="text" name="{{ form.ninio_apellido.name }}" id="{{ form.ninio_apellido.id_for_label }}"
+            value="{{ form.ninio_apellido.value|default:'' }}" placeholder="Ej: García"
+            class="{% if form.ninio_apellido.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_ninio_apellido"></div>
+        </div>
+
+        <!-- Edad -->
+        <div class="form-field">
+          <label for="{{ form.ninio_edad.id_for_label }}">Edad (Años)</label>
+          <input type="number" name="{{ form.ninio_edad.name }}" id="{{ form.ninio_edad.id_for_label }}"
+            value="{{ form.ninio_edad.value|default:'' }}" placeholder="Ej: 3"
+            class="{% if form.ninio_edad.errors %}invalid{% endif %}">
+          <div class="error-message" id="error_ninio_edad"></div>
+        </div>
+
+        <!-- Comentarios / Alergias -->
+        <div class="form-field full-width">
+          <label for="{{ form.comentario.id_for_label }}">Alergias o consideraciones médicas</label>
+          <textarea name="{{ form.comentario.name }}" id="{{ form.comentario.id_for_label }}"
+            placeholder="Indicar si no tiene ninguna" rows="4"
+            class="{% if form.comentario.errors %}invalid{% endif %}">{{ form.comentario.value|default:'' }}</textarea>
+          <div class="error-message" id="error_comentario"></div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-submit">Enviar inscripción</button>
+
+    <div id="mensaje" style="display: none;"></div>
+  </form>
+</section>
+
+<section class="info-section">
+  <div class="info-grid">
+    <div class="info-item">
+      <h3>Dónde estamos</h3>
+      <iframe width="100%" height="82%" style="border:0; border-radius: 10px;" loading="lazy" allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Av.+Colores+123,+Buenos+Aires&output=embed">
+      </iframe>
+    </div>
+
+    <div class="info-item">
+      <h3>Clima actual</h3>
+      {% if clima %}
+      <div class="weather-card">
+        <p class="weather-status">
+          <strong>{{ clima.icono }} {{ clima.estado }}</strong>
+        </p>
+        <p><strong>Temperatura:</strong> {{ clima.temperatura }}°C</p>
+        <p><strong>Probabilidad de lluvia:</strong> {{ clima.lluvia_prob }}%</p>
+        <p><strong>Viento:</strong> {{ clima.viento }} km/h</p>
+      </div>
+      {% else %}
+      <p>No se pudo obtener el clima.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- Modal de Éxito -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">¡Inscripción Exitosa!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="successMessage">Tu inscripción ha sido recibida correctamente.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="{% static 'web_app/inscripcion.js' %}"></script>
+
+{% endblock %}

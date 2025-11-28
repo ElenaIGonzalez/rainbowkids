@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web_app/actividades.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="activities-page">
+
+  <!-- Header Section -->
+  <div class="activities-header text-center">
+    <h2 class="main-title">Actividades para los peques</h2>
+    <p class="main-desc">
+      Explora un mundo de diversion y aprendizaje. Cada actividad está diseñada para fomentar la creatividad y curiosidad de los mas pequeños en un entorno seguro y estimulante.
+    </p>
+    <a href="{% url 'inscripcion' %}" class="btn-inscription">Inscripción</a>
+  </div>
+
+  <div class="curved-container">
+    <div class="container activity-list-container">
+
+      <div class="activity-row theme-green">
+        <div class="row-info">
+          <h3 class="row-title">Juego en Patio</h3>
+          <p class="row-desc">Fomentamos la psicomotricidad y la socialización a través de juegos y movimiento
+            adaptados.</p>
+        </div>
+        <article class="activity-card">
+          <img src="{% static 'images/garden_kid.png' %}" alt="Niños en el patio" class="card-img">
+          <div class="card-content">
+            <h4 class="card-title">Psicomotricidad</h4>
+            <p class="card-text">
+              Plaza blanda, toboganes y circuitos motrices al aire libre.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="activity-row theme-pink">
+        <div class="row-info">
+          <h3 class="row-title">Arte y Creatividad</h3>
+          <p class="row-desc">Pintura, modelado y manualidades para explorar colores y formas.</p>
+        </div>
+        <article class="activity-card">
+          <img src="{% static 'images/art_kid.png' %}" alt="Niños pintando" class="card-img">
+          <div class="card-content">
+            <h4 class="card-title">Creatividad</h4>
+            <p class="card-text">
+              ¿A mancharse las manos! Una aventura sensorial donde los pequeños artistas exploran.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="activity-row theme-blue">
+        <div class="row-info">
+          <h3 class="row-title">Exploración y Lenguaje</h3>
+          <p class="row-desc">Juegos con letras, canciones y cuentos para estimular el lenguaje.</p>
+        </div>
+        <article class="activity-card">
+          <img src="{% static 'images/abc_kid.png' %}" alt="Niños jugando" class="card-img">
+          <div class="card-content">
+            <h4 class="card-title">Bloques y construcción</h4>
+            <p class="card-text">
+              Juegos con letras, canciones y cuentos para estimular el lenguaje y la expresión.
+            </p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}

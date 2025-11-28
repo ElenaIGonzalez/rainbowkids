@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'web_app/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>Panel de Administración</h1>
+        <a href="{% url 'logout' %}" class="btn-logout">Cerrar sesión</a>
+    </div>
+
+    <!-- Sección de Estadísticas -->
+    <div class="stats-section">
+        <h2>Estadísticas</h2>
+        <div class="stats-grid">
+            <div class="stat-card total">
+                <strong>{{ total_consultas }}</strong>
+                <span>Total Solicitudes</span>
+            </div>
+            <div class="stat-card">
+                <strong>{{ stats.vacantes }}</strong>
+                <span>Vacantes / Inscripciones</span>
+            </div>
+            <div class="stat-card">
+                <strong>{{ stats.salud }}</strong>
+                <span>Salud / Alergias</span>
+            </div>
+            <div class="stat-card">
+                <strong>{{ stats.comercial }}</strong>
+                <span>Comercial / Precios</span>
+            </div>
+            <div class="stat-card">
+                <strong>{{ stats.horario }}</strong>
+                <span>Horario / Jornada</span>
+            </div>
+            <div class="stat-card">
+                <strong>{{ stats.general }}</strong>
+                <span>General</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Consultas -->
+    <div class="consultas-section">
+        <h2>Consultas Recibidas</h2>
+
+        {% if success %}
+        <div class="alert alert-success">{{ success }}</div>
+        {% endif %}
+
+        <div class="table-responsive">
+            <table class="table-consultas">
+                <thead>
+                    <tr>
+                        <th>Tutor</th>
+                        <th>Niño/a</th>
+                        <th>Edad</th>
+                        <th>Categoría</th>
+                        <th>Fecha</th>
+                        <th>Comentario</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in consultas %}
+                    <tr>
+                        <td>
+                            <strong>{{ c.tutor_nombre }} {{ c.tutor_apellido }}</strong><br>
+                            <small>{{ c.tutor_email }}</small>
+                        </td>
+                        <td>{{ c.ninio_nombre }} {{ c.ninio_apellido }}</td>
+                        <td>{{ c.ninio_edad }}</td>
+                        <td>
+                            <span class="badge-category cat-{{ c.categoria }}">
+                                {{ c.get_categoria_display }}
+                            </span>
+                        </td>
+                        <td>{{ c.fecha_creacion|date:"d/m/Y H:i" }}</td>
+                        <td>{{ c.comentario|default:"-"|truncatechars:50 }}</td>
+                        <td>
+                            <a href="{% url 'eliminar_consulta' c.id %}" class="btn-delete"
+                                onclick="return confirm('¿Estás seguro de eliminar esta consulta?');">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 30px;">No hay consultas registradas.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,306 @@
+/* Variables */
+:root {
+    /* Colores */
+    --bg: #ffffff;
+    --text: #2a2a2a;
+    --link: #4d96ff;
+    --link-hover: #355fe6;
+
+    /* Paleta */
+    --red: #ff6b6b;
+    --yellow: #ffd93d;
+    --green: #6bcb77;
+    --blue: #4d96ff;
+
+    /* UI */
+    --cta-bg: var(--yellow);
+    --cta-text: #1f1f1f;
+    --shadow: 0 8px 20px rgba(0, 0, 0, .06);
+    --border: rgba(0, 0, 0, .06);
+
+    /* Nuevas Variables de Color Standardizadas */
+    /* Backgrounds */
+    --bg-light-blue: #f0f8ff;
+    --bg-weather: #eef7ff;
+    --bg-hero: #dbeaff;
+    --bg-green-light: #e8f5e9;
+    --bg-blue-light: #e3f2fd;
+    --bg-red-light: #ffebee;
+    --bg-yellow-light: #fffde7;
+    --bg-table-header: #f8f9fa;
+    --bg-table-hover: #fcfcfc;
+    --bg-error: #fff5f5;
+    --bg-success: #d4f8e8;
+    --bg-gradient-start: #eef6ff;
+
+    /* Text */
+    --text-gray: #666666;
+    --text-gray-light: #888888;
+    --text-dark: #333333;
+    --text-table: #555555;
+    --text-nav: #7da0c4;
+    --text-yellow-dark: #fbc02d;
+    --text-white: #ffffff;
+
+    /* Borders */
+    --border-light: #eeeeee;
+    --border-stat: #e1e8ed;
+    --border-green-light: #c8e6c9;
+    --border-error: #ffcdd2;
+    --border-success: #73d673;
+    --border-card-green: #c9f2c9;
+    --border-card-blue: #dbeaff;
+    --border-card-pink: #ffe0e0;
+}
+
+/* Fuentes */
+
+/* Fredoka */
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../fonts/Fredoka-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../fonts/Fredoka-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+/* Poppins */
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+
+/* Estilos base */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+}
+
+
+/* --- Estilos del Header --- */
+.header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Logo --- */
+.logo {
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.logo-rainbow {
+    background: linear-gradient(90deg,
+            var(--red), var(--yellow),
+            var(--green), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: var(--blue);
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar-nav .nav-link {
+    text-decoration: none;
+    color: #7DA0C4;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+    color: var(--blue);
+}
+
+/* --- Botón de Acción (CTA) --- */
+.cta {
+    background-color: var(--yellow);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(255, 214, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 214, 0, 0.4);
+}
+
+/* --- FOOTER --- */
+.footer {
+    color: var(--blue);
+    padding: 50px 0;
+    margin-top: 50px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-container>div:first-child h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.footer-container>div:first-child div {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-container a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 0.9;
+    transition: opacity 0.3s, transform 0.2s;
+}
+
+.footer-container a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+/* --- Copyright y Redes --- */
+.footer-container>div:last-child {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.footer-container p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* iconos SVG */
+.footer-container>div:last-child div {
+    display: flex;
+    gap: 15px;
+}
+
+/* Estilo para los SVG */
+.footer svg {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.footer svg:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.icon-social {
+    fill: var(--blue);
+    transition: fill 0.3s;
+}
+
+.icon-social:hover {
+    fill: var(--yellow);
+}
+
+/* --- RESPONSIVE (Celulares) --- */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-container>div:last-child {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-container>div:first-child div {
+        justify-content: center;
+    }
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+    .container {
+        grid-template-columns: 1fr auto;
+        row-gap: 10px;
+    }
+
+    .nav {
+        grid-column: 1 / -1;
+        justify-content: center;
+    }
+}
