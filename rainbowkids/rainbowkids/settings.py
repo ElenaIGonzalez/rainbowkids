@@ -85,8 +85,9 @@ import os
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-        conn_max_age=600
+        default=os.environ.get('DATABASE_URL', 'postgresql://rainbowkids_db_skpi_user:TeiyLddxWG59rjCFAWZKZQaKTCcZs6k7@dpg-d4kg67m3jp1c738qj230-a.oregon-postgres.render.com/rainbowkids_db_skpi'),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
