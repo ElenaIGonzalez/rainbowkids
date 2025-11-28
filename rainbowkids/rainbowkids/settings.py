@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-14x4-6(y91efe9c0i)0@=i#kn!&a!(om_1gkzzb2&%1f^dolv3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://rainbowkids.onrender.com']
 
 
 # Application definition
@@ -74,15 +74,13 @@ WSGI_APPLICATION = 'rainbowkids.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rainbowkids_db',
-        'USER': 'postgres',     
-        'PASSWORD': 'Saori3618',  
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
 }
 
 
@@ -137,3 +135,9 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = 'elena.gonzalez@lalupitacontenidos.site' 
 EMAIL_HOST_PASSWORD = 'Elena2025/'      
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+import django_heroku
+django_heroku.settings(locals())
