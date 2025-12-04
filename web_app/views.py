@@ -137,25 +137,32 @@ def register(request):
             allowed.save()
 
             # ========== ENVÍO DE EMAIL ==========
-            codigo = allowed.codigo_validacion
+            try:
+                codigo = allowed.codigo_validacion
+                
+                validacion_url = request.build_absolute_uri('/validar_cuenta/')
 
-            mensaje = (
-                f"Hola {allowed.nombre},\n\n"
-                f"Gracias por registrarte en RainbowKids.\n\n"
-                f"Para validar tu cuenta, ingresá este código:\n\n"
-                f"🔐 Código de validación: {codigo}\n\n"
-                f"Validá tu cuenta aquí:\n"
-                f"http://127.0.0.1:8000/validar_cuenta/\n\n"
-                "Saludos,\nRainbowKids"
-            )
+                mensaje = (
+                    f"Hola {allowed.nombre},\n\n"
+                    f"Gracias por registrarte en RainbowKids.\n\n"
+                    f"Para validar tu cuenta, ingresá este código:\n\n"
+                    f"🔐 Código de validación: {codigo}\n\n"
+                    f"Validá tu cuenta aquí:\n"
+                    f"{validacion_url}\n\n"
+                    "Saludos,\nRainbowKids"
+                )
 
-            send_mail(
-                subject="Validación de cuenta - RainbowKids",
-                message=mensaje,
-                from_email="elena.gonzalez@lalupitacontenidos.site",
-                recipient_list=[email],
-                fail_silently=False,
-            )
+                send_mail(
+                    subject="Validación de cuenta - RainbowKids",
+                    message=mensaje,
+                    from_email="elena.gonzalez@lalupitacontenidos.site",
+                    recipient_list=[email],
+                    fail_silently=False,
+                )
+            except Exception as e:
+                # Si el email falla, registrar el error pero continuar
+                print(f"⚠️  Error al enviar email de validación: {e}")
+                # El usuario ya fue creado, así que continuamos de todas formas
 
             return render(request, "web_app/validar_cuenta.html", {
                 "email": email,
