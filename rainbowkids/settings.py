@@ -26,11 +26,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default= 'django-insecure-14x4-6(y91ef
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
-
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# ALLOWED_HOSTS configuration
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+else:
+    ALLOWED_HOSTS = []
+    RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+    if RENDER_EXTERNAL_HOSTNAME:
+        ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -55,8 +58,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
 ]
 
 ROOT_URLCONF = 'rainbowkids.urls'
@@ -83,17 +84,26 @@ WSGI_APPLICATION = 'rainbowkids.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 import dj_database_url
-import os
 
-import dj_database_url
+# Database configuration: SQLite for local development, PostgreSQL for production
+if DEBUG:
+    # Usar SQLite en desarrollo local
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    # Usar PostgreSQL en producción (Render)
+    DATABASES = {
+        'default': dj_database_url.config(
+            default="postgresql://rainbowkids_db_skpi_user:TeiyLddxWG59rjCFAWZKZQaKTCcZs6k7@dpg-d4kg67m3jp1c738qj230-a.oregon-postgres.render.com/rainbowkids_db_skpi",
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://rainbowkids_db_skpi_user:TeiyLddxWG59rjCFAWZKZQaKTCcZs6k7@dpg-d4kg67m3jp1c738qj230-a.oregon-postgres.render.com/rainbowkids_db_skpi",
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
 
 
 
@@ -132,15 +142,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'rainbowkids', 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
-# MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
+# Use WhiteNoise's compressed manifest storage in production
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
@@ -150,11 +160,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email Configuration
 EMAIL_BACKEND = 'web_app.email_backend.UnverifiedSSLBackend'
-EMAIL_HOST = 'c2280296.ferozo.com'
-EMAIL_PORT = 465
+EMAIL_HOST = os.environ.get('EMAIL_HOST', 'c2280296.ferozo.com')
+EMAIL_PORT = int(os.environ.get('EMAIL_PORT', '465'))
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-EMAIL_HOST_USER = 'elena.gonzalez@lalupitacontenidos.site' 
-EMAIL_HOST_PASSWORD = 'Elena2025/'      
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'elena.gonzalez@lalupitacontenidos.site')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'Elena2025/')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
