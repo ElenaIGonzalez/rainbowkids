@@ -91,10 +91,7 @@ def inscripcion_api(request):
     except Exception as e:
         # Si el email falla, registrar el error pero continuar
         print(f"⚠️  Error al enviar email: {e}")
-        # La inscripción ya fue guardada
     
-    # ============================================
-
     return JsonResponse({
         "success": True,
         "message": "Inscripción enviada correctamente.",
@@ -162,7 +159,6 @@ def register(request):
             except Exception as e:
                 # Si el email falla, registrar el error pero continuar
                 print(f"⚠️  Error al enviar email de validación: {e}")
-                # El usuario ya fue creado, así que continuamos de todas formas
 
             return render(request, "web_app/validar_cuenta.html", {
                 "email": email,
