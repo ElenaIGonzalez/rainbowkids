@@ -65,28 +65,34 @@ def inscripcion_api(request):
     #  ENVÍO DE CORREO AL TUTOR
     # ============================================
 
-    mensaje = (
-        f"Hola {consulta.tutor_nombre},\n\n"
-        "Recibimos tu solicitud de inscripción en RainbowKids.\n\n"
-        f"Categoría asignada: {consulta.categoria}\n\n"
-        "Datos enviados:\n"
-        f"- Tutor: {consulta.tutor_nombre} {consulta.tutor_apellido}\n"
-        f"- Email: {consulta.tutor_email}\n"
-        f"- Teléfono: {consulta.tutor_telefono or 'No informado'}\n\n"
-        f"- Niño/a: {consulta.ninio_nombre} {consulta.ninio_apellido}\n"
-        f"- Edad: {consulta.ninio_edad}\n"
-        f"- Comentarios: {consulta.comentario or 'Sin comentarios'}\n\n"
-        "Gracias por contactarte con RainbowKids.\n"
-        "Nos estaremos comunicando a la brevedad.\n"
-    )
+    try:
+        mensaje = (
+            f"Hola {consulta.tutor_nombre},\n\n"
+            "Recibimos tu solicitud de inscripción en RainbowKids.\n\n"
+            f"Categoría asignada: {consulta.categoria}\n\n"
+            "Datos enviados:\n"
+            f"- Tutor: {consulta.tutor_nombre} {consulta.tutor_apellido}\n"
+            f"- Email: {consulta.tutor_email}\n"
+            f"- Teléfono: {consulta.tutor_telefono or 'No informado'}\n\n"
+            f"- Niño/a: {consulta.ninio_nombre} {consulta.ninio_apellido}\n"
+            f"- Edad: {consulta.ninio_edad}\n"
+            f"- Comentarios: {consulta.comentario or 'Sin comentarios'}\n\n"
+            "Gracias por contactarte con RainbowKids.\n"
+            "Nos estaremos comunicando a la brevedad.\n"
+        )
 
-    send_mail(
-        subject=f"Confirmación de inscripción - Categoría: {consulta.categoria}",
-        message=mensaje,
-        from_email="elena.gonzalez@lalupitacontenidos.site",  
-        recipient_list=[consulta.tutor_email],
-        fail_silently=False,
-    )
+        send_mail(
+            subject=f"Confirmación de inscripción - Categoría: {consulta.categoria}",
+            message=mensaje,
+            from_email="elena.gonzalez@lalupitacontenidos.site",  
+            recipient_list=[consulta.tutor_email],
+            fail_silently=False,
+        )
+    except Exception as e:
+        # Si el email falla, registrar el error pero continuar
+        print(f"⚠️  Error al enviar email: {e}")
+        # La inscripción ya fue guardada
+    
     # ============================================
 
     return JsonResponse({
