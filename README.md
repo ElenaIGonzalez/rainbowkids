@@ -82,8 +82,6 @@ EMAIL_USER=TU_CORREO
 EMAIL_PASSWORD=TU_PASSWORD
 ```
 
-⚠️ **No subir este archivo al repositorio.**
-
 ### 4️⃣ Aplicar migraciones
 
 ```bash
@@ -98,42 +96,6 @@ python manage.py runserver
 
 Ir a:  
 👉 http://127.0.0.1:8000/
-
----
-
-## 🗄 Configuración de la Base de Datos (PostgreSQL)
-
-En `settings.py`:
-
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-    }
-}
-```
-
----
-
-## Configuración del Servidor de Correo
-
-```python
-EMAIL_BACKEND = 'web_app.email_backend.UnverifiedSSLBackend'
-
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = os.environ.get("EMAIL_PORT")
-EMAIL_USE_SSL = True
-EMAIL_USE_TLS = False
-
-EMAIL_HOST_USER = os.environ.get("EMAIL_USER")
-EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-```
 
 ---
 
@@ -184,29 +146,19 @@ Se enviará un código por mail.
 
 ---
 
-## Superusuario (solo local)
-
-```bash
-python manage.py createsuperuser
-```
-
----
-
 ## Notas Importantes
 
 - Los usuarios se crean como **inactivos** hasta validar su código.
 - El dashboard está protegido con `login_required`.
 - Se evita registrar correos no autorizados.
 - Todas las vistas públicas están separadas de las de autenticación.
-- El envío de mails se prueba en local (Render no lo permite sin extras).
-
+- 
 ---
 
 # Estado Final del Proyecto
 
 ✔ Backend completo  
 ✔ Autenticación funcionando  
-✔ Envío de correos activo  
 ✔ Dashboard con estadísticas  
 ✔ API interna + API externa  
 ✔ Validación de usuarios permitidos  
