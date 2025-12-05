@@ -157,13 +157,9 @@ def register(request):
                     fail_silently=False,
                 )
             except Exception as e:
-                # Si el email falla, registrar el error pero continuar
                 print(f"⚠️  Error al enviar email de validación: {e}")
 
-            return render(request, "web_app/validar_cuenta.html", {
-                "email": email,
-                "success": "Le llegará un correo para validar su cuenta."
-            })
+            return redirect(f'/validar_cuenta/?email={email}')
 
     else:
         form = RegistroForm()
@@ -205,7 +201,11 @@ def validar_cuenta(request):
             "email": email
         })
 
-    return render(request, "web_app/validar_cuenta.html")
+    email_from_url = request.GET.get('email', '')
+    return render(request, "web_app/validar_cuenta.html", {
+        "email": email_from_url,
+        "success": "Le llegará un correo para validar su cuenta." if email_from_url else ""
+    })
 
 
 # Login / Logout
